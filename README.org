@@ -1,1 +1,5 @@
 * PROYECTO FINAL BDNR 
+** Integrantes:
+    - Álvaro López Zamor
+    - Emiliano Bobadilla
+    - Aldahir
