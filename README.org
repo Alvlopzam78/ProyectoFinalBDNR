@@ -21,7 +21,7 @@ docker run -p 27017:27017 \
        -d mongo
 #+end_src
 
-Si no es la primera vez que se inicializa Mongo, entonces es suficiente con correr
+Si no es la primera vez que se inicializa Mongo, entonces es suficiente con escribir en la terminal
 
 #+begin_src shell
 docker start mongo
