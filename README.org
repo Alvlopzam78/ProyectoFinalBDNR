@@ -1,6 +1,6 @@
 * PROYECTO FINAL BDNR 
 ** Integrantes:
-    - Álvaro López Zamor
+    - Álvaro López Zamora
     - Emiliano Bobadilla
     - Aldahir
 
@@ -19,6 +19,12 @@ docker run -p 27017:27017 \
        -v mongo-data:/data/db \
        --name mongo \
        -d mongo
+#+end_src
+
+Si no es la primera vez que se inicializa Mongo, entonces es suficiente con correr
+
+#+begin_src shell
+docker start mongo
 #+end_src
 
 Una vez que Mongo se ha inicializado, se utilizó python para poder extraer los datos desde la API y agregarlos a Mongo. Para esto se utiliza el siguiente código.
