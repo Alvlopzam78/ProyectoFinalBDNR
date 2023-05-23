@@ -44,4 +44,8 @@ for x in json.loads(response.text):
     col.insert_one(x)
 #+end_src
 
+*** Queries Mongo
+
 ** Neo4j
+
+*** Queries Neo4j
