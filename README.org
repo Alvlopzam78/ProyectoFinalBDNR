@@ -2,7 +2,7 @@
 ** Integrantes:
     - Álvaro López Zamora: 198442
     - Emiliano Bobadilla Franco: 198554
-    - Aldahir López Navarrete: 
+    - Aldahir López Navarrete: 198069
 
 ** Objetivo:
 Buscar una API para conectarla a través de python con una base de datos ~MongoDB~ y después hacer un ETL que cargue la base de datos procesada a un base de datos estilo grafo en ~Neo4j~.
