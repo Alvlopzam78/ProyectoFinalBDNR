@@ -1,8 +1,8 @@
 * PROYECTO FINAL BDNR 
 ** Integrantes:
-    - Álvaro López Zamora
-    - Emiliano Bobadilla
-    - Aldahir
+    - Álvaro López Zamora: 198442
+    - Emiliano Bobadilla Franco: 198554
+    - Aldahir López Navarrete: 
 
 ** Objetivo:
 Buscar una API para conectarla a través de python con una base de datos ~MongoDB~ y después hacer un ETL que cargue la base de datos procesada a un base de datos estilo grafo en ~Neo4j~.
@@ -43,3 +43,5 @@ response = requests.get(string)
 for x in json.loads(response.text):
     col.insert_one(x)
 #+end_src
+
+** Neo4j
