@@ -8,3 +8,32 @@
 Buscar una API para conectarla a través de python con una base de datos ~MongoDB~ y después hacer un ETL que cargue la base de datos procesada a un base de datos estilo grafo en ~Neo4j~.
 
 Para esto, se escogió utilizar la API de Harry Potter ([[https://hp-api.onrender.com][HP-API]]) que contiene a todos los personajes del universo de Harry Potter e información correspondiente a su casa, su asendencia, su patronous, entre otros.
+
+** MongoDB
+Lo primero, es iniciar Mongo a través de Docker para poder almacenar los datos que se extraigan.
+
+#+begin_src shell
+docker stop mongo
+docker rm mongo
+docker run -p 27017:27017 \
+       -v mongo-data:/data/db \
+       --name mongo \
+       -d mongo
+#+end_src
+
+Una vez que Mongo se ha inicializado, se utilizó python para poder extraer los datos desde la API y agregarlos a Mongo. Para esto se utiliza el siguiente código.
+
+#+begin_src python
+import requests
+from pymongo import MongoClient
+import json
+
+client = MongoClient("mongodb://localhost:27017/")
+db = client["HP"]
+col = db["characters"]
+string = "https://hp-api.onrender.com/api/characters"
+response = requests.get(string)
+
+for x in json.loads(response.text):
+    col.insert_one(x)
+#+end_src
