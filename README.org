@@ -5,6 +5,6 @@
     - Aldahir
 
 ** Objetivo:
-Buscar una API para conectarla a través de python con una base de datos MongoDB y después hacer un ETL que cargue la base de datos procesada a un base de datos estilo grafo en Neo4j.
+Buscar una API para conectarla a través de python con una base de datos ~MongoDB~ y después hacer un ETL que cargue la base de datos procesada a un base de datos estilo grafo en ~Neo4j~.
 
 Para esto, se escogió utilizar la API de Harry Potter ([[https://hp-api.onrender.com][HP-API]]) que contiene a todos los personajes del universo de Harry Potter e información correspondiente a su casa, su asendencia, su patronous, entre otros.
