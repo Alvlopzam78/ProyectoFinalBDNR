@@ -112,4 +112,55 @@ Y reiniciar el server
   sudo systemctl restart neo4j
 #+end_src
 
+*** Carga de datos a Neo4j 
+
+#+begin_src python
+import pymongo
+from py2neo import Graph, Node, Transaction
+
+# Conexión a MongoDB
+client = pymongo.MongoClient("mongodb://localhost:27017/")
+db = client["HP"]  # Reemplaza con el nombre de tu base de datos
+collection = db["characters"]  # Reemplaza con el nombre de tu colección
+
+# Conexión a Neo4j
+graph = Graph("bolt://13.57.206.177:7687", auth=("neo4j", "CONTRASEÑA_AQUI"))  # Reemplaza con tus credenciales y dirección IP
+
+# Extraer los datos de MongoDB
+data = collection.find()
+
+# Iniciar transacción
+tx = graph.begin()
+
+# Generar y ejecutar las consultas Cypher dentro de la transacción
+for item in data:
+    node = Node("Character",
+                id=item['id'],
+                name=item['name'],
+                species=item['species'],
+                gender=item['gender'],
+                house=item['house'],
+                dateOfBirth=item['dateOfBirth'],
+                yearOfBirth=item['yearOfBirth'],
+                wizard=item['wizard'],
+                ancestry=item['ancestry'],
+                eyeColour=item['eyeColour'],
+                hairColour=item['hairColour'],
+                wand_wood=item['wand']['wood'],
+                wand_core=item['wand']['core'],
+                wand_length=item['wand']['length'],
+                patronus=item['patronus'],
+                hogwartsStudent=item['hogwartsStudent'],
+                hogwartsStaff=item['hogwartsStaff'],
+                actor=item['actor'],
+                alive=item['alive'],
+                image=item['image'])
+    
+    tx.create(node)
+
+# Commit de la transacción
+tx.commit()
+
+#+end_src
+
 
