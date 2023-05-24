@@ -53,3 +53,64 @@ Primero creamos una nueva instancia de un EC2 usando Amazon Web services.
 
 ![ec2](https://github.com/Alvlopzam78/ProyectoFinalBDNR/blob/main/imagenes/ec2.png)
 
+*** Instalación Neo4j
+
+Ejecutamos los siguientes comandos en la terminal:
+
+Primero garantizamos las llaves para el intercambio
+
+#+begin_src shell
+curl -fsSL https://debian.neo4j.com/neotechnology.gpg.key |sudo gpg --dearmor -o /usr/share/keyrings/neo4j.gpg
+#+end_src
+
+#+RESULTS:
+
+Luego agregamos los repositorios de neo4j a nuestro ubuntu
+
+#+begin_src shell
+  echo "deb [signed-by=/usr/share/keyrings/neo4j.gpg] https://debian.neo4j.com stable 4.1" | sudo tee -a /etc/apt/sources.list.d/neo4j.list
+#+end_src
+
+Actualizamos la lista de paquetes que ve el sistema
+
+#+begin_src shell
+sudo apt update
+#+end_src
+
+Finalmente, podemos instalar Neo4j:
+
+#+begin_src shell
+  sudo apt install neo4j
+#+end_src
+
+Si queremos que cuando reiniciemos la máquina, nuestro neo4j viva, hacemos esto:
+
+#+begin_src shell
+sudo systemctl enable neo4j.service
+#+end_src
+
+E iniciamos el servicio.
+#+begin_src shell
+sudo systemctl start neo4j.service
+#+end_src
+
+*** Conectándonos a Neo4j
+
+Antes de conectarnos debemos modificar el archivo ~/etc/neo4j/neo4j.conf~ para que Neo4j acepte conexiones de todo el mundo 🌐:
+
+#+begin_src shell
+  sudo nano /etc/neo4j/neo4j.conf
+#+end_src
+Hay que buscar la siguiente línea y descomentarla (quitarle el ~*~):
+
+#+begin_src shell
+*dbms.default_listen_address=0.0.0.0
+#+end_src
+
+Y reiniciar el server
+
+#+begin_src shell
+  sudo systemctl restart neo4j
+#+end_src
+
+
