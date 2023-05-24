@@ -124,7 +124,7 @@ db = client["HP"]  # Reemplaza con el nombre de tu base de datos
 collection = db["characters"]  # Reemplaza con el nombre de tu colección
 
 # Conexión a Neo4j
-graph = Graph("bolt://13.57.206.177:7687", auth=("neo4j", "Contraseña"))  # Reemplaza con tus credenciales y dirección IP
+graph = Graph("bolt://13.57.206.177:7687", auth=("neo4j", "contraseña"))  # Reemplaza con tus credenciales y dirección IP
 
 # Extraer los datos de MongoDB
 data = list(collection.find())
@@ -200,8 +200,6 @@ for i in range(0, num_of_relationships, batch_size):
     print(f"Creadas relaciones {i+batch_size} de {num_of_relationships}")
 
 print("¡Todas las transacciones se han completado exitosamente!")
-
-
 
 #+end_src
 
