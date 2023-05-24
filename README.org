@@ -51,5 +51,5 @@ for x in json.loads(response.text):
 *** Queries Neo4j
 Primero creamos una nueva instancia de un EC2 usando Amazon Web services.
 
-![ec2](imagenes/ec2.png)
+'![ec2](imagenes/ec2.png)'
 
