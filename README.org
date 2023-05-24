@@ -94,7 +94,7 @@ E iniciamos el servicio.
 sudo systemctl start neo4j.service
 #+end_src
 
-*** Conectándonos a Neo4j
+*** Conexión a Neo4j
 
 Antes de conectarnos debemos modificar el archivo ~/etc/neo4j/neo4j.conf~ para que Neo4j acepte conexiones de todo el mundo 🌐:
 
@@ -108,7 +108,6 @@ Hay que buscar la siguiente línea y descomentarla (quitarle el ~*~):
 #+end_src
 
 Y reiniciar el server
-
 #+begin_src shell
   sudo systemctl restart neo4j
 #+end_src
