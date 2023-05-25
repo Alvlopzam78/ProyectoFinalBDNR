@@ -125,7 +125,6 @@ db.characters.aggregate([
 #+end_src
 ** Neo4j
 
-*** Queries Neo4j
 Primero creamos una nueva instancia de un EC2 usando Amazon Web services.
 
 ![ec2](https://github.com/Alvlopzam78/ProyectoFinalBDNR/blob/main/imagenes/ec2.png)
@@ -280,4 +279,23 @@ print("¡Todas las transacciones se han completado exitosamente!")
 
 #+end_src
 
-
+*** Queries Neo4j
+Obtener la información de un personaje especifico (Harry Potter) y todas sus relaciones
+#+begin_src cypher
+MATCH (character:Character {name: 'Harry Potter'})-[:BELONGS_TO]->(house:House),
+      (character)-[:HAS_WAND_CORE]->(wandCore:Wand_Core),
+      (character)-[:HAS_ANCESTRY]->(ancestry:Ancestry)
+RETURN character, house, wandCore, ancestry
+#+end_src
+Cuenta por cada casa, cuántos personajes se encuentran vivos
+#+begin_src cypher
+MATCH (character:Character)-[:BELONGS_TO]->(house:House)
+WHERE character.alive = true
+RETURN house.name AS House, COUNT(character) AS LivingCharacters
+#+end_src
+Obtener aquellos personajes cuyo patronous sea un ciervo y su casa sea Gryffindor
+#+begin_src cypher
+MATCH (character:Character)-[:BELONGS_TO]->(house:House)
+WHERE house.name = 'Gryffindor' AND character.patronus = 'stag'
+RETURN character
+#+end_src
