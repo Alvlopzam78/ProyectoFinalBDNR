@@ -46,7 +46,7 @@ for x in json.loads(response.text):
 
 *** Queries Mongo
 ¿Cuántos estudiantes y staff hay por casa?
-#+begin_src shell
+#+begin_src javascript
 db.characters.aggregate([
   {
     $group: {
