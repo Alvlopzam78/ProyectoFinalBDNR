@@ -67,7 +67,7 @@ db.characters.aggregate([
 #+end_src
 
 ¿Cuáles son los 3 "ancestry" más comúnes?
-#+begin_src shell
+#+begin_src javascript
 db.characters.aggregate([
   {
     $match: {
@@ -99,7 +99,7 @@ db.characters.aggregate([
 #+end_src
 
 ¿Cuál es el material más común con el que se construyen las varitas, así como el tamaño promedio, por casa?
-#+begin_src shell
+#+begin_src javascript
 db.characters.aggregate([
   {
     $match: {
