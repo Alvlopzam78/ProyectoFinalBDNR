@@ -81,6 +81,8 @@ Primero creamos una nueva instancia de un EC2 usando Amazon Web services.
 
 ![ec2](https://github.com/Alvlopzam78/ProyectoFinalBDNR/blob/main/imagenes/ec2.png)
 
+[[https://github.com/Alvlopzam78/ProyectoFinalBDNR/blob/main/imagenes/ec2.png]]
+
 *** Instalación Neo4j
 
 Ejecutamos los siguientes comandos en la terminal:
