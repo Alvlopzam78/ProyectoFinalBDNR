@@ -45,7 +45,84 @@ for x in json.loads(response.text):
 #+end_src
 
 *** Queries Mongo
+¿Cuántos estudiantes y staff hay por casa?
+#+begin_src shell
+db.characters.aggregate([
+  {
+    $group: {
+      _id: "$house",
+      studentCount: {
+        $sum: {
+          $cond: [{ $eq: ["$hogwartsStudent", true] }, 1, 0]
+        }
+      },
+      staffCount: {
+        $sum: {
+          $cond: [{ $eq: ["$hogwartsStaff", true] }, 1, 0]
+        }
+      }
+    }
+  }
+])
+#+end_src
 
+¿Cuáles son los 3 "ancestry" más comúnes?
+#+begin_src shell
+db.characters.aggregate([
+  {
+    $match: {
+      ancestry: { $ne: "" }
+    }
+  },
+  {
+    $group: {
+      _id: "$ancestry",
+      count: { $sum: 1 }
+    }
+  },
+  {
+    $sort: {
+      count: -1
+    }
+  },
+  {
+    $limit: 3
+  },
+  {
+    $project: {
+      ancestry: "$_id",
+      count: 1,
+      _id: 0
+    }
+  }
+])
+#+end_src
+
+¿Cuál es el material más común con el que se construyen las varitas, así como el tamaño promedio, por casa?
+#+begin_src shell
+db.characters.aggregate([
+  {
+    $match: {
+      house: { $ne: "" }
+    }
+  },
+  {
+    $group: {
+      _id: "$house",
+      wood: { $push: "$wand.wood" },
+      averageLength: { $avg: "$wand.length" }
+    }
+  },
+  {
+    $project: {
+      house: "$_id",
+      mostCommonWood: { $arrayElemAt: [ { $split: [ { $reduce: { input: "$wood", initialValue: "", in: { $concat: [ "$$value", { $cond: [ { $eq: [ "$$value", "" ] }, "", "," ] }, "$$this" ] } } }, "," ] }, 0 ] },
+      averageLength: 1,
+      _id: 0
+    }
+  }
+])
+#+end_src
 ** Neo4j
 
 *** Queries Neo4j
